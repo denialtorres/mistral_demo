@@ -39,7 +39,12 @@ class ChatJob < ApplicationJob
   end
 
   def message_div(rand)
-    "<div id='#{rand}' class='bg-primary-subtle p2 rounded-lg mb-2 rounded'></div>"
+    <<~HTML
+      <div id='#{rand}'
+        data-controller='markdown-text'
+        data-markdown-text-update-value=''
+        class='bg-primary-subtle p-2 rounded-lg mb-2 rounded'></div>
+    HTML
   end
 
   def broadcast_message(target, message)
@@ -50,7 +55,6 @@ class ChatJob < ApplicationJob
     json = JSON.parse(chunk)
     done = json["done"]
     message = json["response"].to_s.strip.size.zero? ? "<br>" : json["response"]
-
     if done
       message = "<script>document.getElementById('#{rand}').dataset.markdownTextUpdatedValue = '#{Time.current.to_f}';</script>"
       broadcast_message(rand, message)
