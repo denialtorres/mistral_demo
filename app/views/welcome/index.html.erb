@@ -1,4 +1,7 @@
 <div class="container">
   <h1> Welcome#Index </h1>
+
+  <%= turbo_stream_from "welcome" %>
+  <div id="messages"></div>
   <%= render "form" %>
 </div>
