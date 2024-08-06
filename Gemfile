@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-ruby "3.0.0"
+ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3", ">= 7.1.3.4"
+gem "rails", "7.1.1" # , github: "rails/rails",
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -29,6 +29,9 @@ gem "jbuilder"
 # bootstrap
 gem "bootstrap"
 gem "sassc-rails"
+
+gem "litestack"
+gem "falcon"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
