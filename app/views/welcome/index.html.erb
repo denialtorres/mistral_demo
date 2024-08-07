@@ -2,6 +2,16 @@
   <h1> Welcome#Index </h1>
 
   <%= turbo_stream_from session.id %>
-  <div id="messages"></div>
+  <div id="messages">
+    <% @history.each do |history| %>
+       <div data-controller='markdown-text' class='bg-success-subtle ms-5 p-2 rounded-lg mb-2 rounded'>
+         <%= history.prompt %>
+       </div>
+
+       <div data-controller='markdown-text' class='bg-primary-subtle me-5 p-2 rounded-lg mb-2 rounded'>
+         <%= history.response %>
+       </div>
+     <% end %>
+  </div>
   <%= render "form" %>
 </div>
