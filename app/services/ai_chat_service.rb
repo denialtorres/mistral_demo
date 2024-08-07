@@ -10,6 +10,8 @@ class AiChatService
   end
 
   def call
+    return if clean_up_chat_if_told_to_restart
+
     request = Net::HTTP::Post.new(URL, "Content-Type" => "application/json")
     request.body = {
       model: "mistral:latest",
@@ -37,6 +39,13 @@ class AiChatService
   end
 
   private
+
+  def clean_up_chat_if_told_to_restart
+    return false unless @prompt.downcase.strip == "restart"
+
+    History.where(session_id: @session_id).delete_all
+    Turbo::StreamsChannel.broadcast_replace_to @session_id, target: "messages", html: ""
+  end
 
   def messages
     array = []
