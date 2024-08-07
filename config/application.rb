@@ -27,3 +27,8 @@ module MistralDemo
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+
+model = "Checkout"
+method = "retry"
+id = "0885ba46544511efb31022f2e461fc12"
